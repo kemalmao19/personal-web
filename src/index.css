@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-[#F7F2F2];
+    }
+}
+
+@layer components {
+    .menu-item {
+        @apply bg-[#EDE9E9];
+    }
+}
