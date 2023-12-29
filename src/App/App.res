@@ -2,7 +2,7 @@
 let make = () => {
   let (section, setSection) = React.useState(() => "All")
   let handleClick = e => {
-    let value = %raw(`e.target.id`)
+    let value = %raw(`e.target.innerHTML`)
     switch value {
     | "All" => setSection(_ => "All")
     | "About" => setSection(_ => "About")
@@ -13,6 +13,6 @@ let make = () => {
   }
   <main className={"m-10"}>
     <Header state={section} handle={handleClick} />
-    <Cards/>
+    <Cards state={section} />
   </main>
 }

@@ -5,19 +5,23 @@ let iconColor = "bg-clip-text text-transparent bg-gradient-to-r from-violet-400 
 
 @react.component
 let make = (~state, ~handle) => {
+  let colorMenu = (menu, state) =>
+    switch menu === state {
+    | true => "bg-white"
+    | _ => ""
+    }
+    
   <header className={"flex justify-between items-center"}>
     <Title color={iconColor} />
-    <div className={"flex p-2 gap-4 menu-item rounded-3xl"}>
+    <div className={"flex p-2 gap-2 menu-item rounded-3xl"}>
       {menu
       ->Belt.Array.mapWithIndex((i, x) =>
         <div
-          key={i |>Belt.Int.toString}
+          key={i |> Belt.Int.toString}
           id={x}
-          className={`py-1 px-3 ${x === state
-              ? "bg-white"
-              : ""} rounded-full transition-transform duration-500 cursor-pointer`}
+          className={`py-1 px-3 ${colorMenu(x, state)} rounded-full cursor-pointer hover:text-gray-400 transition-colors duration-300`}
           onClick={e => handle(e)}>
-          {x |> React.string}
+          <div className={""}> {x |> React.string} </div>
         </div>
       )
       ->React.array}
