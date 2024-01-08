@@ -1,5 +1,5 @@
 @react.component
-let make = (~state, ~id) => {
+let make = (~state) => {
   <div
     className={`relative flex justify-center items-center w-full h-full bg-white rounded-3xl ${state === "Projects" ||
         state === "All"

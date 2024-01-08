@@ -2,14 +2,33 @@
 let make = (~state) => {
   let (isArranged, setArrange) = React.useState(() => true)
 
-  let arrayData = [
-    <Bio id={"About"} state={state} toggle={setArrange} arrange={isArranged} />,
-    <Twitter id={"About"} state={state} />,
-    <AdoptHunt id={"Projects"} state={state} />,
-    <Github id={"Projects"} state={state} />,
-    <Tech id={"About"} state={state} />,
-    <Blog id={"Media"} state={state} />,
+  let aboutData = [
+    <Bio state={state} toggle={setArrange} arrange={isArranged} />,
+    <Twitter state={state} />,
+    <Tech state={state} />,
   ]
+
+  let projectData = [<AdoptHunt state={state} />, <Github state={state} />]
+
+  let mediaData = [<Blog state={state} />]
+
+  let arrayData = [
+    <Bio state={state} toggle={setArrange} arrange={isArranged} />,
+    <Twitter state={state} />,
+    <AdoptHunt state={state} />,
+    <Github state={state} />,
+    <Tech state={state} />,
+    <Blog state={state} />,
+  ]
+
+  // show and arrangecomponent based on state
+  let show = state =>
+    switch state {
+    | "Projects" => projectData->Belt.Array.concat(aboutData)->Belt.Array.concat(mediaData)
+    | "About" => aboutData->Belt.Array.concat(projectData)->Belt.Array.concat(mediaData)
+    | "Media" => mediaData->Belt.Array.concat(aboutData)->Belt.Array.concat(projectData)
+    | _ => arrayData
+    }
 
   let random = (arrange, array) =>
     switch arrange {
@@ -32,6 +51,6 @@ let make = (~state) => {
 
   <div
     className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-10 transition-transform duration-500 ease-in-out`}>
-    {random(isArranged, arrayData)}
+    {random(isArranged, show(state))}
   </div>
 }
