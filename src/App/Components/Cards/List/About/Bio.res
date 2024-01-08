@@ -2,7 +2,7 @@ let description =
   `Curious data analyst venturing into the world of full-stack Software Engineering, fueled by a passion for data-driven innovation.`->React.string
 
 @react.component
-let make = (~state, ~toggle, ~arrange) => {
+let make = (~state, ~toggle, ~arrange, ~id) => {
   <div
     className={`${state === "About" || state === "All"
         ? ""

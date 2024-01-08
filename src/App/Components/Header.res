@@ -10,7 +10,7 @@ let make = (~state, ~handle) => {
     | true => "bg-white"
     | _ => ""
     }
-    
+
   <header className={"flex justify-between items-center"}>
     <Title color={iconColor} />
     <div className={"flex p-2 gap-2 menu-item rounded-3xl"}>
@@ -19,13 +19,18 @@ let make = (~state, ~handle) => {
         <div
           key={i |> Belt.Int.toString}
           id={x}
-          className={`py-1 px-3 ${colorMenu(x, state)} rounded-full cursor-pointer hover:text-gray-400 transition-colors duration-300`}
+          className={`py-1 px-3 ${colorMenu(
+              x,
+              state,
+            )} rounded-full cursor-pointer hover:text-gray-400 transition-colors duration-300`}
           onClick={e => handle(e)}>
           <div className={""}> {x |> React.string} </div>
         </div>
       )
       ->React.array}
     </div>
-    <p className={"cursor-pointer"}> {"Contact" |> React.string} </p>
+    <a className={"cursor-pointer hover:underline"} href={"mailto:kemalsmy@gmail.com"}>
+      <p> {"Contact" |> React.string} </p>
+    </a>
   </header>
 }

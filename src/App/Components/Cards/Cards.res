@@ -3,11 +3,12 @@ let make = (~state) => {
   let (isArranged, setArrange) = React.useState(() => true)
 
   let arrayData = [
-    <Bio state={state} toggle={setArrange} arrange={isArranged} />,
-    <Twitter state={state} />,
-    <AdoptHunt state={state} />,
-    <Github state={state} />,
-    <Tech state={state} />
+    <Bio id={"About"} state={state} toggle={setArrange} arrange={isArranged} />,
+    <Twitter id={"About"} state={state} />,
+    <AdoptHunt id={"Projects"} state={state} />,
+    <Github id={"Projects"} state={state} />,
+    <Tech id={"About"} state={state} />,
+    <Blog id={"Media"} state={state} />,
   ]
 
   let random = (arrange, array) =>
